@@ -6,11 +6,11 @@ from scrapy.spiders import CrawlSpider, Rule
 class ZhipinSpider(CrawlSpider):
     name = 'zhipin'
     allowed_domains = ['zhipin.com']
-    start_urls = ['https://www.zhipin.com/c101020100/?query=python&page=3&page-1']
+    start_urls = ['https://www.zhipin.com/c101020100/?query=python&page=0']
 
     rules = (
         # 匹配职位列表页的规则
-        Rule(LinkExtractor(allow=r'.+\?query=python&page=\d&ka=page-1'),
+        Rule(LinkExtractor(allow=r'.+\?query=python&page=\d'),
              follow=True),
         Rule(LinkExtractor(allow=r'.+job_detail/\w+~.html'),
              callback="parse_job",
